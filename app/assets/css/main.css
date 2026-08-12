@@ -1,0 +1,38 @@
+@import 'tailwindcss';
+
+/*
+ * Tokeny skopiowane z visionoptyk.pl (app/assets/css/main.css → @theme).
+ * Kopia, nie import — sklep jest osobnym deployem i nie może zależeć od builda
+ * strony głównej. Zmiana barw w księdze marki wymaga edycji w obu miejscach;
+ * przy trzech nominałach to tańsze niż monorepo.
+ */
+@theme {
+  /* Brand (księga znaku) */
+  --color-brand-red: #e31e24;
+  --color-brand-navy: #1f529e;
+  --color-brand-blue: #1093ce;
+  --color-brand-grey: #9d9e9e;
+
+  /* Figma */
+  --color-ink: #0d3b67;
+  --color-muted-ink: #5c6b7a;
+  --color-hairline: #e5e9f0;
+  --color-tint: #f2f6fa;
+  --color-tint-strong: #e9eff7;
+
+  --font-sans: 'Roboto', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --radius-card: 24px;
+  --radius-media: 20px;
+}
+
+@layer base {
+  body {
+    @apply bg-white text-ink font-sans antialiased;
+  }
+
+  /* Focus ring brand-blue — ta sama reguła a11y co na stronie głównej. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-blue;
+  }
+}
