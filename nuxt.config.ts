@@ -3,7 +3,16 @@ import tailwindcss from '@tailwindcss/vite'
 export default defineNuxtConfig({
   compatibilityDate: '2026-08-12',
   devtools: { enabled: true },
-  modules: ['@nuxt/eslint'],
+  modules: ['@nuxt/eslint', '@nuxt/fonts'],
+
+  /*
+   * Waga 900 jest obowiązkowa — nagłówki na badanie.visionoptyk.pl i
+   * promocje.visionoptyk.pl są w 900, nie 700. Bez tego sklep wygląda jak
+   * inna marka mimo tych samych barw.
+   */
+  fonts: {
+    families: [{ name: 'Roboto', provider: 'google', weights: [400, 500, 700, 900] }],
+  },
 
   css: ['~/assets/css/main.css'],
   vite: { plugins: [tailwindcss()] },

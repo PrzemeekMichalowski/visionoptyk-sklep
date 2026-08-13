@@ -1,13 +1,22 @@
 <template>
-  <div class="min-h-dvh flex flex-col">
-    <header class="border-b border-hairline">
-      <div class="mx-auto max-w-5xl px-5 py-4 flex items-center justify-between">
-        <span class="text-lg font-bold tracking-tight text-brand-navy">VisionOptyk</span>
+  <div class="flex min-h-dvh flex-col">
+    <header class="sticky top-0 z-50 border-b border-hairline bg-white/95 backdrop-blur">
+      <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
+        <NuxtLink to="/" aria-label="Sklep VisionOptyk — strona główna">
+          <img
+            src="/logo-visionoptyk.png"
+            alt="VisionOptyk"
+            width="809"
+            height="156"
+            class="h-8 w-auto sm:h-9"
+          >
+        </NuxtLink>
+
         <a
           href="https://visionoptyk.pl/"
-          class="text-sm text-muted-ink hover:text-brand-navy underline underline-offset-4"
+          class="text-sm font-medium text-muted-ink underline underline-offset-4 transition-colors hover:text-brand-navy"
         >
-          Wróć na visionoptyk.pl
+          visionoptyk.pl
         </a>
       </div>
     </header>
@@ -16,9 +25,12 @@
       <NuxtPage />
     </main>
 
-    <footer class="border-t border-hairline mt-16">
-      <div class="mx-auto max-w-5xl px-5 py-6 text-sm text-muted-ink">
-        © {{ new Date().getFullYear() }} VisionOptyk
+    <footer class="mt-20 border-t border-hairline bg-tint">
+      <div
+        class="mx-auto flex max-w-6xl flex-col gap-2 px-5 py-8 text-sm text-muted-ink sm:flex-row sm:items-center sm:justify-between"
+      >
+        <p>© {{ new Date().getFullYear() }} VisionOptyk — Bliżej Ciebie</p>
+        <p>Karty realizujesz w salonach VisionOptyk.</p>
       </div>
     </footer>
   </div>

@@ -8,9 +8,13 @@ defineProps<{ produkt: ProduktNaLiscie }>()
 <template>
   <NuxtLink
     :to="`/produkt/${produkt.handle}/`"
-    class="group flex flex-col overflow-hidden rounded-card border border-hairline transition-shadow hover:shadow-lg"
+    class="group flex flex-col overflow-hidden rounded-card border border-hairline bg-white transition-all hover:-translate-y-0.5 hover:border-brand-blue/40 hover:shadow-xl"
   >
-    <div class="aspect-4/3 overflow-hidden bg-tint">
+    <!--
+      object-contain, nie cover: zdjęcie karty to packshot w pionie (1122×1402),
+      a kadrowanie ucina blister z logo — czyli dokładnie to, co ma sprzedawać.
+    -->
+    <div class="flex aspect-4/5 items-center justify-center overflow-hidden bg-tint p-6">
       <img
         v-if="produkt.featuredImage"
         :src="produkt.featuredImage.url"
@@ -18,30 +22,25 @@ defineProps<{ produkt: ProduktNaLiscie }>()
         :width="produkt.featuredImage.width"
         :height="produkt.featuredImage.height"
         loading="lazy"
-        class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+        class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
       >
-      <!--
-        Produkt bez zdjęcia dostaje kafelek w barwach marki zamiast pustego
-        prostokąta — karta podarunkowa i tak nie ma sensownej fotografii.
-      -->
-      <div
-        v-else
-        class="flex h-full w-full items-center justify-center bg-linear-to-br from-brand-navy to-brand-blue p-6"
-      >
-        <span class="text-center text-xl font-bold tracking-tight text-white">
-          {{ produkt.title }}
-        </span>
-      </div>
+      <span v-else class="text-center text-xl font-black tracking-tight text-brand-navy">
+        {{ produkt.title }}
+      </span>
     </div>
 
     <div class="flex flex-1 flex-col p-5">
-      <h2 class="text-lg font-semibold text-brand-navy">{{ produkt.title }}</h2>
+      <h2 class="text-lg font-black tracking-tight text-ink">{{ produkt.title }}</h2>
       <p v-if="produkt.description" class="mt-2 line-clamp-2 text-sm text-muted-ink">
         {{ produkt.description }}
       </p>
-      <p class="mt-4 text-base font-semibold text-ink">
-        {{ zakresCen(produkt.priceRange.minVariantPrice, produkt.priceRange.maxVariantPrice) }}
-      </p>
+
+      <div class="mt-4 flex items-center justify-between">
+        <span class="text-base font-bold text-ink">
+          {{ zakresCen(produkt.priceRange.minVariantPrice, produkt.priceRange.maxVariantPrice) }}
+        </span>
+        <span class="text-sm font-bold text-brand-navy group-hover:underline">Zobacz →</span>
+      </div>
     </div>
   </NuxtLink>
 </template>
